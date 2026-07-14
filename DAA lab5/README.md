@@ -1,63 +1,67 @@
-# Ex. No. 3 — Kruskal's and Prim's Algorithms for Minimum Spanning Tree
+# Min-Max via Divide and Conquer (User Input Version)
 
-**Course:** CS5303 – Design and Analysis of Algorithms Lab
-
-## Aim
-To implement Kruskal's and Prim's algorithms to find the Minimum Spanning Tree (MST) of a weighted, undirected graph.
-
-## Description
-- **Kruskal's Algorithm:** Sorts all edges by weight and greedily adds the smallest edge that doesn't form a cycle, using a Union-Find (Disjoint Set Union) structure with path compression and union by rank. Time complexity: O(E log E).
-- **Prim's Algorithm:** Grows the MST one vertex at a time from a starting node, always picking the cheapest edge that connects a new vertex to the tree, using a min-heap (priority queue). Time complexity: O(E log V).
+CS5303 – DAA Lab, Ex. No. 5. Finds the minimum and maximum of a
+user-entered array using the divide-and-conquer technique, and compares
+the comparison count against the naive linear-scan approach and the
+theoretical formula `3n/2 - 2`.
 
 ## Files
-- `mst.py` — Python implementation of both algorithms with user input for the graph (vertices, edges, and weights).
 
-## How to Run
+| File | Purpose |
+|---|---|
+| `min_max.py` | Core algorithm. Run directly for a command-line version that reads numbers from the keyboard. |
+| `app.py` | Flask web app that serves an input form and shows results in the browser. |
+| `templates/index.html` | HTML page for the web form/results. |
+| `requirements.txt` | Python dependencies. |
+| `render.yaml` | Deployment config for Render. |
+| `.gitignore` | Keeps caches/venvs out of git. |
+
+## 1. Run it locally
+
+Command-line version (typed input, no web browser needed):
+
 ```bash
-python3 mst.py
-```
-You will be prompted to enter:
-1. Number of vertices
-2. Number of edges
-3. Each edge in the format: `u v weight` (vertices are 0-indexed)
-
-## Sample Input
-```
-Enter number of vertices: 7
-Enter number of edges: 11
-Edge 1: 0 1 7
-Edge 2: 0 3 5
-Edge 3: 1 2 8
-Edge 4: 1 3 9
-Edge 5: 1 4 7
-Edge 6: 2 4 5
-Edge 7: 3 4 15
-Edge 8: 3 5 6
-Edge 9: 4 5 8
-Edge 10: 4 6 9
-Edge 11: 5 6 11
+python min_max.py
+# Enter the numbers separated by spaces or commas: 3, 1, 7, 4, 9, 2, 8, 5, 6, 0
 ```
 
-## Sample Output
-```
-=== Kruskal's MST ===
-  Edge (0 - 3) Weight: 5
-  Edge (2 - 4) Weight: 5
-  Edge (3 - 5) Weight: 6
-  Edge (0 - 1) Weight: 7
-  Edge (1 - 4) Weight: 7
-  Edge (4 - 6) Weight: 9
-  Total MST Cost: 39
+Web version:
 
-=== Prim's MST ===
-  Edge (0 - 3) Weight: 5
-  Edge (3 - 5) Weight: 6
-  Edge (0 - 1) Weight: 7
-  Edge (1 - 4) Weight: 7
-  Edge (4 - 2) Weight: 5
-  Edge (4 - 6) Weight: 9
-  Total MST Cost: 39
+```bash
+pip install -r requirements.txt
+python app.py
+# open http://localhost:5000 in your browser
 ```
 
-## Result
-Both algorithms successfully computed the Minimum Spanning Tree with a total cost of 39, confirming that Kruskal's and Prim's algorithms yield the same MST weight regardless of the different edge selection order.
+## 2. Push this to your own GitHub repo
+
+Run these commands inside this folder (replace the URL with your repo):
+
+```bash
+git init
+git add .
+git commit -m "Min-Max divide and conquer with user input"
+git branch -M main
+git remote add origin https://github.com/<your-username>/<your-repo-name>.git
+git push -u origin main
+```
+
+If you don't have a repo yet, create one first at https://github.com/new
+(don't initialize it with a README, since this folder already has one),
+then run the commands above.
+
+## 3. Deploy on Render
+
+1. Go to https://dashboard.render.com and log in.
+2. Click **New +** → **Web Service**.
+3. Connect your GitHub account and select the repo you just pushed.
+4. Render should auto-detect `render.yaml`. If asked to confirm settings:
+   - **Environment:** Python
+   - **Build Command:** `pip install -r requirements.txt`
+   - **Start Command:** `gunicorn app:app`
+5. Click **Create Web Service**. Render will build and deploy automatically.
+6. Once the build finishes, Render gives you a live URL like
+   `https://minmax-divide-and-conquer.onrender.com` — open it to use the app.
+
+Any future `git push` to the connected branch will trigger an automatic
+redeploy on Render.
