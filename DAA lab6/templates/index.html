@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matrix Chain Multiplication</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="wrap">
+    <h1>Matrix Chain Multiplication</h1>
+    <p class="subtitle">Dynamic programming solver &mdash; O(n&sup3;) time, O(n&sup2;) space</p>
+
+    <form method="POST" class="card">
+      <label for="dims">Matrix dimensions (comma-separated)</label>
+      <input
+        type="text"
+        id="dims"
+        name="dims"
+        value="{{ dims_input }}"
+        placeholder="e.g. 10,30,5,60,10"
+        autocomplete="off"
+      >
+      <p class="hint">
+        For matrices A1(10&times;30), A2(30&times;5), A3(5&times;60), A4(60&times;10)
+        enter <code>10,30,5,60,10</code>
+      </p>
+      <button type="submit">Solve</button>
+    </form>
+
+    {% if error %}
+      <div class="card error">{{ error }}</div>
+    {% endif %}
+
+    {% if result %}
+      <div class="card">
+        <h2>Matrix Dimensions</h2>
+        <ul class="matrix-list">
+          {% for line in result.matrices %}
+            <li>{{ line }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="card highlight">
+        <h2>Result</h2>
+        <p><strong>Minimum scalar multiplications:</strong> {{ result.min_multiplications }}</p>
+        <p><strong>Optimal parenthesization:</strong> <code>{{ result.optimal_parenthesization }}</code></p>
+      </div>
+
+      {% if result.dp_table %}
+      <div class="card">
+        <h2>DP Cost Table (m[i][j])</h2>
+        <pre>{{ result.dp_table }}</pre>
+      </div>
+      {% endif %}
+    {% endif %}
+  </main>
+</body>
+</html>
