@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TSP Solver</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="wrap">
+    <h1>Travelling Salesman Problem</h1>
+    <p class="subtitle">Brute-force exact solver &mdash; cities labeled A, B, C, ... in row order</p>
+
+    <form method="POST" class="card">
+      <label for="matrix">Cost matrix (one row per line, comma-separated, "INF" for no edge)</label>
+      <textarea id="matrix" name="matrix" rows="7" spellcheck="false">{{ matrix_text }}</textarea>
+      <p class="hint">
+        Matrix must be square (N rows of N values). Diagonal is usually <code>INF</code>.
+        Capped at {{ max_n }} cities (brute force grows factorially).
+      </p>
+      <button type="submit">Solve</button>
+    </form>
+
+    {% if error %}
+      <div class="card error">{{ error }}</div>
+    {% endif %}
+
+    {% if result %}
+      <div class="card">
+        <h2>Cost Matrix</h2>
+        <pre>{% for i in range(result.n) %}{{ result.cities[i] }}: {{ result.display_matrix[i] | join(', ') }}
+{% endfor %}</pre>
+      </div>
+
+      <div class="card highlight">
+        <h2>Result</h2>
+        <p><strong>Optimal tour:</strong> {{ result.optimal_tour | join(' &rarr; ') | safe }}</p>
+        <p><strong>Minimum cost:</strong> {{ result.min_cost }}</p>
+      </div>
+
+      <div class="card">
+        <h2>Path Verification</h2>
+        <ul class="step-list">
+          {% for step in result.steps %}
+            <li>{{ step.from }} &rarr; {{ step.to }}: cost = {{ step.cost }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  </main>
+</body>
+</html>
