@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>N-Queens Solver</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="wrap">
+    <h1>N-Queens Solver</h1>
+    <p class="subtitle">Backtracking algorithm &mdash; place N queens so none attack each other</p>
+
+    <form method="POST" class="card">
+      <label for="n">Board size (N)</label>
+      <input
+        type="number"
+        id="n"
+        name="n"
+        value="{{ n_input }}"
+        min="1"
+        max="12"
+        autocomplete="off"
+      >
+      <p class="hint">Try N = 4, 6, or 8. Capped at 12 for performance.</p>
+      <button type="submit">Solve</button>
+    </form>
+
+    {% if error %}
+      <div class="card error">{{ error }}</div>
+    {% endif %}
+
+    {% if result %}
+      <div class="card highlight">
+        <h2>Result</h2>
+        <p><strong>N:</strong> {{ result.n }}</p>
+        <p><strong>Solutions found:</strong> {{ result.solution_count }}</p>
+        <p><strong>Backtracks:</strong> {{ result.backtracks }}</p>
+      </div>
+
+      {% if result.boards %}
+      <div class="card">
+        <h2>
+          Boards
+          {% if result.boards_truncated %}
+            <span class="muted">(showing {{ result.boards_shown }} of {{ result.solution_count }})</span>
+          {% endif %}
+        </h2>
+        {% for board in result.boards %}
+          <p class="solution-label">Solution {{ loop.index }}: {{ result.solutions[loop.index0] }}</p>
+          <pre>{{ board }}</pre>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="card">
+        <p>No solutions exist for N = {{ result.n }}.</p>
+      </div>
+      {% endif %}
+    {% endif %}
+  </main>
+</body>
+</html>
