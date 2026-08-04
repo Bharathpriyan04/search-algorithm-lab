@@ -1,0 +1,125 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: #0f172a;
+    color: #e2e8f0;
+    margin: 0;
+    padding: 2rem 1rem;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+h1 {
+    margin-bottom: 0.25rem;
+}
+
+.subtitle {
+    color: #94a3b8;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+.input-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: end;
+    background: #1e293b;
+    padding: 1.25rem;
+    border-radius: 10px;
+    margin-bottom: 0.5rem;
+}
+
+.field {
+    flex: 1;
+    min-width: 220px;
+}
+
+.input-form label {
+    display: block;
+    font-size: 0.85rem;
+    color: #94a3b8;
+    margin-bottom: 0.3rem;
+}
+
+.input-form input[type="text"] {
+    background: #0f172a;
+    border: 1px solid #334155;
+    color: #e2e8f0;
+    padding: 0.6rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    width: 100%;
+}
+
+.input-form button {
+    background: #6366f1;
+    color: white;
+    border: none;
+    padding: 0.65rem 1.4rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    height: fit-content;
+}
+
+.input-form button:hover {
+    background: #4f46e5;
+}
+
+.hint {
+    color: #64748b;
+    font-size: 0.8rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+.error {
+    background: #7f1d1d;
+    color: #fecaca;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    margin-bottom: 1.5rem;
+}
+
+.results-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #1e293b;
+    border-radius: 10px;
+    overflow: hidden;
+    font-size: 0.9rem;
+}
+
+.results-table th, .results-table td {
+    padding: 0.7rem 0.9rem;
+    text-align: right;
+    border-bottom: 1px solid #334155;
+}
+
+.results-table th:first-child, .results-table td:first-child {
+    text-align: left;
+}
+
+.results-table thead th {
+    background: #0f172a;
+    color: #94a3b8;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.results-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.results-table tbody tr:hover {
+    background: #253449;
+}

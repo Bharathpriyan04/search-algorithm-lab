@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quicksort: Deterministic vs Randomized</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h1>Deterministic vs Randomized Quicksort</h1>
+    <p class="subtitle">Compare comparisons and running time across Random, Sorted, Reverse, and Nearly Sorted inputs — or supply your own array.</p>
+
+    <form method="POST" class="input-form">
+        <div class="field">
+            <label for="n">Array size N (auto-generates the 4 test cases)</label>
+            <input type="text" id="n" name="n" value="{{ n }}" placeholder="500">
+        </div>
+        <div class="field">
+            <label for="custom_array">Or a custom array (comma-separated integers — overrides N)</label>
+            <input type="text" id="custom_array" name="custom_array" value="{{ custom_array }}" placeholder="5, 3, 8, 1, 9, 2">
+        </div>
+        <button type="submit">Run Comparison</button>
+    </form>
+    <p class="hint">N is capped at {{ max_n }} — deterministic quicksort is O(n²) on sorted/reverse input.</p>
+
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+
+    {% if results %}
+    <table class="results-table">
+        <thead>
+            <tr>
+                <th>Input Type</th>
+                <th>Size</th>
+                <th>DQS Comparisons</th>
+                <th>DQS Time (ms)</th>
+                <th>RQS Comparisons</th>
+                <th>RQS Time (ms)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in results %}
+            <tr>
+                <td>{{ row.case }}</td>
+                <td>{{ row.size }}</td>
+                <td>{{ row.d_comps }}</td>
+                <td>{{ row.d_time }}</td>
+                <td>{{ row.r_comps }}</td>
+                <td>{{ row.r_time }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</div>
+</body>
+</html>
