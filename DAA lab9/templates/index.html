@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bin Packing Visualizer</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h1>Bin Packing: FF vs FFD vs BFD</h1>
+    <p class="subtitle">Enter item sizes and a bin capacity to compare First Fit, First Fit Decreasing, and Best Fit Decreasing.</p>
+
+    <form method="POST" class="input-form">
+        <label for="items">Item sizes (comma-separated)</label>
+        <input type="text" id="items" name="items" value="{{ items_raw }}" placeholder="0.5, 0.7, 0.3, 0.9">
+
+        <label for="capacity">Bin capacity</label>
+        <input type="text" id="capacity" name="capacity" value="{{ capacity }}" placeholder="1.0">
+
+        <button type="submit">Pack Bins</button>
+    </form>
+
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+
+    {% if results %}
+    <div class="summary">
+        <span>Items: {{ results.item_list|length }}</span>
+        <span>Sum: {{ results.total }}</span>
+        <span>Capacity: {{ results.capacity }}</span>
+        <span>Lower bound on bins: {{ results.lower_bound }}</span>
+    </div>
+
+    <div class="results-grid">
+        {% for algo in results.algorithms %}
+        <div class="algo-card">
+            <h2>{{ algo.name }}</h2>
+            <p class="bin-count">{{ algo.bin_count }} bin{{ 's' if algo.bin_count != 1 else '' }}</p>
+            {% for b in algo.bins %}
+            <div class="bin-row">
+                <div class="bin-label">Bin {{ b.index }}</div>
+                <div class="bin-bar">
+                    <div class="bin-fill" style="width: {{ b.percent }}%;"></div>
+                </div>
+                <div class="bin-meta">{{ b.used }} / {{ b.capacity }} ({{ b.percent }}%)</div>
+                <div class="bin-items">{{ b.items }}</div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+</body>
+</html>

@@ -1,0 +1,157 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: #0f172a;
+    color: #e2e8f0;
+    margin: 0;
+    padding: 2rem 1rem;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+h1 {
+    margin-bottom: 0.25rem;
+}
+
+.subtitle {
+    color: #94a3b8;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+.input-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: end;
+    background: #1e293b;
+    padding: 1.25rem;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+}
+
+.input-form label {
+    display: block;
+    font-size: 0.85rem;
+    color: #94a3b8;
+    margin-bottom: 0.3rem;
+}
+
+.input-form input[type="text"] {
+    background: #0f172a;
+    border: 1px solid #334155;
+    color: #e2e8f0;
+    padding: 0.6rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    width: 100%;
+}
+
+.input-form input#items {
+    min-width: 320px;
+    flex: 2;
+}
+
+.input-form input#capacity {
+    min-width: 100px;
+    flex: 1;
+}
+
+.input-form button {
+    background: #6366f1;
+    color: white;
+    border: none;
+    padding: 0.65rem 1.4rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    height: fit-content;
+}
+
+.input-form button:hover {
+    background: #4f46e5;
+}
+
+.error {
+    background: #7f1d1d;
+    color: #fecaca;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    margin-bottom: 1.5rem;
+}
+
+.summary {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    background: #1e293b;
+    padding: 0.85rem 1.25rem;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    color: #cbd5e1;
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+}
+
+.algo-card {
+    background: #1e293b;
+    border-radius: 10px;
+    padding: 1.1rem;
+}
+
+.algo-card h2 {
+    font-size: 1.05rem;
+    margin: 0 0 0.25rem 0;
+}
+
+.bin-count {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+}
+
+.bin-row {
+    margin-bottom: 0.75rem;
+}
+
+.bin-label {
+    font-size: 0.8rem;
+    color: #cbd5e1;
+    margin-bottom: 0.2rem;
+}
+
+.bin-bar {
+    background: #0f172a;
+    border-radius: 4px;
+    height: 10px;
+    overflow: hidden;
+    margin-bottom: 0.25rem;
+}
+
+.bin-fill {
+    background: linear-gradient(90deg, #6366f1, #22d3ee);
+    height: 100%;
+}
+
+.bin-meta {
+    font-size: 0.75rem;
+    color: #94a3b8;
+}
+
+.bin-items {
+    font-size: 0.75rem;
+    color: #64748b;
+    word-break: break-word;
+}
